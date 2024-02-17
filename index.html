@@ -1,82 +1,83 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="description" content="Convert a 360° panorama to a cubemap.">
-  <title>Panorama to Cubemap</title>
-  <style>
-    body {
-      margin: 1em auto;
-      max-width: 800px;
-    }
-    .settings > * {
-      margin-top: 12px;
-      margin-bottom: 12px;
-    }
-    #cubemap {
-      width: 800px;
-      height: 600px;
-      position: relative;
-      border: 1px solid #888;
-      background: #eee;
-      margin-top: 15px;
-    }
-  </style>
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Convert a 360° panorama to a cubemap." />
+    <title>全景图转Cubemap</title>
+    <style>
+      body {
+        margin: 1em auto;
+        max-width: 800px;
+      }
+      .settings > * {
+        margin-top: 12px;
+        margin-bottom: 12px;
+      }
+      #cubemap {
+        width: 800px;
+        height: 600px;
+        position: relative;
+        border: 1px solid #888;
+        background: #eee;
+        margin-top: 15px;
+      }
+    </style>
+  </head>
+  <body lang="zh-cn">
+    <header>
+      <h1>全景图转Cubemap</h1>
+      <aside>将360度全景图转换为Cubemap。</aside>
+    </header>
 
-<body>
-  <header>
-    <h1>Panorama to Cubemap</h1>
-    <aside>Convert a 360° panorama to six cube faces.</aside>
-  </header>
+    <main>
+      <section>
+        <h2>上传图片</h2>
+        <label>上传全景图片: <input id="imageInput" type="file" accept="image/*" /></label>
+        <ul>
+          <li>图像应使用等距柱状投影进行格式化。</li>
+          <li>图像的纵横比应为 2：1（宽度必须正好是高度的两倍）。</li>
+        </ul>
+        <p>随后，网页将会把图像转为Cubemap图并展示在下方。</p>
+      </section>
 
-  <main>
-    <section>
-      <h2>Upload</h2>
-      <label>Upload a panoramic image: <input id="imageInput" type="file" accept="image/*"></label>
-      <ul>
-        <li>The image should be formatted with the equirectangular projection.</li>
-        <li>The image should have an aspect ratio of 2:1 (the width must be exactly twice the height).</li>
-      </ul>
-      <p>A cubemap will be generated from your image.</p>
-    </section>
+      <section class="settings">
+        <h2>设置</h2>
+        <div>
+          <label>角度偏移: <input id="cubeRotation" type="number" min="0" max="359" value="180" />°</label>
+        </div>
+        <fieldset title="The resampling algorithm to use when generating the cubemap.">
+          <legend>插值类型</legend>
+          <label><input type="radio" name="interpolation" value="lanczos" checked />Lanczos (最高质量)</label>
+          <label><input type="radio" name="interpolation" value="cubic" />Cubic (更清晰的细节)</label>
+          <label><input type="radio" name="interpolation" value="linear" />Linear (更柔和的细节)</label>
+        </fieldset>
+        <fieldset>
+          <legend>输出格式</legend>
+          <label><input type="radio" name="format" value="png" checked />PNG</label>
+          <label><input type="radio" name="format" value="jpg" />JPEG</label>
+        </fieldset>
+      </section>
 
-    <section class="settings">
-      <h2>Settings</h2>
-      <div>
-        <label>Cube Rotation: <input id="cubeRotation" type="number" min="0" max="359" value="180">°</label>
-      </div>
-      <fieldset title="The resampling algorithm to use when generating the cubemap.">
-        <legend>Interpolation type</legend>
-        <label><input type="radio" name="interpolation" value="lanczos" checked>Lanczos (best but slower)</label>
-        <label><input type="radio" name="interpolation" value="cubic">Cubic (sharper details)</label>
-        <label><input type="radio" name="interpolation" value="linear">Linear (softer details)</label>
-      </fieldset>
-      <fieldset>
-        <legend>Output format</legend>
-        <label><input type="radio" name="format" value="png" checked>PNG</label>
-        <label><input type="radio" name="format" value="jpg">JPEG</label>
-      </fieldset>
-    </section>
+      <section>
+        <h2>输出</h2>
+        <p>单击每个面以将其保存到计算机。</p>
+        <div id="cubemap">
+          <b id="generating" style="visibility: hidden">生成中...</b>
+          <output id="faces"></output>
+        </div>
+      </section>
+    </main>
 
-    <section>
-      <h2>Output</h2>
-      <p>Click each cube face to save it to your computer.</p>
-      <div id="cubemap">
-        <b id="generating" style="visibility:hidden">Generating...</b>
-        <output id="faces"></output>
-      </div>
-    </section>
-  </main>
+    <footer>
+      <p>
+        <small>作者：<a href="https://github.com/jaxry">Lucas Crane</a></small>
+        <br />
+        <small>设计：<a href="http://motherfuckingwebsite.com/">mf</a></small>
+        <br />
+        <small>汉化：<a href="https://github.com/Nsakrty">Nsakrty</a></small>
+      </p>
+    </footer>
 
-  <footer>
-    <p>
-      <small>By <a href="https://github.com/jaxry">Lucas Crane</a></small>
-      <br>
-      <small>Design by <a href="http://motherfuckingwebsite.com/">mf</a></small>
-    </p>
-  </footer>
-
-  <script src="main.js"></script>
-</body>
+    <script src="main.js"></script>
+  </body>
 </html>
