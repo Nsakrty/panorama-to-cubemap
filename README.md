@@ -1,10 +1,11 @@
 # Panorama To Cubemap
 
-https://jaxry.github.io/panorama-to-cubemap/
+原作品链接:<https://jaxry.github.io/panorama-to-cubemap/>
 
-A web app which converts 360° panoramas to six cube faces
+一个可以将360°全景图转换为Cubemap的网络应用程序
 
-## Features
-* Runs in your browser by using the Canvas API to manipulate image data.
-* Uses Lanczos interpolation for high quality output.
-* Ability to rotate cubemap to control the orientation of the scene.
+## 特点
+* 运行在您的浏览器中，通过使用Canvas API来操作图像数据。
+* 使用Lanczos插值来获得高质量的输出。
+* 能够旋转cubemap来控制场景的朝向。
+
